@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav_bar">
+        <div class="header">
+            <div class="nav_logo">
+                <span>myLOG</span>
+                <img src="{% static "img/board/Logo_Illy.svg" %}">
+            </div>
+            <span class="menu">
+                <a href="">메뉴</a>
+            </span>
+            <button class="login_button">Logout</button>
+            <button class="just_wirte_button">Just Write!</button>
+        </div>
+    </nav>
+
+    {% block contents %}
+    <form action="" method='POST'>
+        {% csrf_token %}
+
+        {% for form in forms %}
+        <div>
+            <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+            {{ form }}
+        </div>
+        {% dendfor %}
+
+        {% if error %}
+        {{ error }}
+        {% endif %}
+        <button>임시저장</button>
+        <button type="submit">글 작성</button>
+    </form>
+</body>
+</html>
