@@ -139,3 +139,4 @@ LOGIN_REDIRECT_URL = '/'
 # 로그아웃시 이동하는 URL
 LOGOUT_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'blog_app.User'
