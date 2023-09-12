@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <title>login</title>
+</head>
+<body>
+    {% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <div class="box">
+            <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+            />
+
+            <input
+            type="text"
+            name="password"
+            id="password"
+            placeholder="password"
+            />
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    {% endblock %}
+
+    <!-- 필드 오류와 넌필드 오류를 출력 -->
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        {% for field in form %}
+
+        <!-- 필드 오류 -->
+        {% if field.errors %}
+        <div>
+            <strong>{{ field.label }}</strong>
+            {{ field.errors }}
+        </div>
+        {% endif %} {% endfor %}
+        
+        <!-- 넌필드 오류 -->
+        {% for error in form.non_field_errors %}
+        <div>
+            <strong>{{ error }}</strong>
+        </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+</body>
+</html>
