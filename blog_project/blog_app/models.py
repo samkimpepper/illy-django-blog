@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 class Article(models.Model):
@@ -10,7 +12,7 @@ class Article(models.Model):
     topic = models.CharField(max_length=20)
     img = models.ImageField(upload_to="images/")
     
-class User(models.Model):
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=50)
+class User(AbstractUser):
+    username = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=128)
 
