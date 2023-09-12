@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <title>login</title>
+</head>
+<body>
+    {% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <div class="box">
+            <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+            />
+
+            <input
+            type="text"
+            name="password"
+            id="password"
+            placeholder="password"
+            />
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    
+    {% endblock %}
+</body>
+</html>
