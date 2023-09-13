@@ -1,0 +1,19 @@
+footer{
+    width: 100%;
+    background-color: #e7e3da;
+    height: 200px;
+    display: flex;
+    justify-content: end;
+    font-family: 'Pretendard', sans-serif;
+}
+
+footer .container{
+    align-items: self-end;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+}
+
+span{
+    font-weight: bold;
+}
