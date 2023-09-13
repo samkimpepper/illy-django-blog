@@ -1,0 +1,91 @@
+*{
+    font-family: 'Pretendard', sans-serif;
+}
+
+body{
+    background-color: #f9f8f4;
+        font-family: 'Pretendard', sans-serif;
+
+}
+
+.container{
+    width: 1024px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 140px;
+    gap: 20px;
+    margin-bottom: 200px;
+}
+
+p label {
+    display: none;
+}
+
+#id_title {
+    width: 740px;
+    border:none;
+    height: 41px;
+}
+
+textarea {
+    height:300px;
+    width: 740px;
+    border: none;
+}
+
+.ai-button {
+    display: flex;
+    width: 264px;
+    height: 88px;
+    padding: 10px;
+    border: 1px solid #cac8c5;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+
+.topic {
+    display:flex;
+    width:264px;
+    height:175px;
+    padding:10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #cac8c5;
+    gap:10px;
+}
+
+.upload_info {
+    display: flex;
+    width: 264px;
+    height: 175px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding:10px;
+    border-radius: 2px;
+    border: 1px solid #cac8c5;
+    gap:10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#save_temp {
+    border: 1px solid #1e1e1e;
+    width: 100%;
+    padding: 4px 20px;
+    border-radius: 2px;
+}
+
+#submit {
+    background-color: #1e1e1e;
+    color:#fff;
+    width:100%;
+    padding: 4px 20px;
+    border-radius: 2px;
+}
