@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>Document</title>
 </head>
 <body>
@@ -22,22 +23,69 @@
         </div>
     </nav>
 
+    
     {% block contents %}
-    <form action="" method='POST'>
-        {% csrf_token %}
+    <div class="container">
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <!--
+            {% for form in forms %}
+            <div>
+                <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+                {{ form }}
+            </div>
+            {% endfor %}
+            -->
+    
+            {% if error %}
+            {{ error }}
+            {% endif %}
+            
+        </form>
+        <div class="sidebar">
+            <div class="ai-button">
+                <img>
+                <span>AI 글 자동완성</span>
+            </div>
 
-        {% for form in forms %}
-        <div>
-            <label for="{{ form.id_for_label }}">{{ form.label }}</label>
-            {{ form }}
+            <div class="topic">
+                <div>TOPIC</div>
+                <form>
+                    <label>
+                        <input type="radio">일상
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio">요리
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio">여행
+                    </label>
+                </form>
+            </div>
+            <div class="upload_info">
+                <div>UPLOAD INFO</div>
+                <div>상태: 미게시</div>
+                <button>이미지 업로드</button>
+                <div class="buttons">
+                    <button id="save_temp">임시저장</button>
+                    <button id="submit" type="submit">글 작성</button>
+                </div>
+                
+            </div>
         </div>
-        {% dendfor %}
+        {% endblock %}
 
-        {% if error %}
-        {{ error }}
-        {% endif %}
-        <button>임시저장</button>
-        <button type="submit">글 작성</button>
-    </form>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <p>Made with <span>Django</span></p>
+        </div>
+    </footer>
 </body>
 </html>
