@@ -5,84 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board</title>
 </head>
 <body>
     <nav class="nav_bar">
+
         <div class="header">
-            <div class="nav_logo">
-                <span>myLOG</span>
-                <img src="{% static "img/board/Logo_Illy.svg" %}">
+            <div class = "logo_image">
+                <img src="{% static "img/board/main_logo.svg" %}">
             </div>
-            <span class="menu">
-                <a href="">메뉴</a>
-            </span>
-            <button class="login_button">Logout</button>
-            <button class="just_wirte_button">Just Write!</button>
+
+            <div class = "logo_text">MYLOG</div>
+
         </div>
+
+
+
+        <div class="menu">
+            <div class = "menu_text"><a href="">일상</a></div>
+            <div class = "menu_text"><a href="">요리</a></div>
+            <div class = "menu_text"><a href="">여행</a></div>
+            <div class = "menu_text"><a href="">영화</a></div>
+            <div class = "menu_text"><a href="">IT</a></div>
+        </div>
+
+        <div class = "Logout_button"><button>Logout</button></div>
+
+        <div class = "Write_button"><button class = "Write_button_text">Just Write!</button></div>
+
     </nav>
 
     <main>
-        <header>
-            <div class="main_posting">
-                <div class="posting_date"> 
-                    2023 09 06
-                </div>
-                <div class="posting_title">
-                    Lorem ipsum dolor
-                </div>
-                <div class="writer">
-                    by userid
-                </div>
-                <div class="content_tag">
-                    일상
-                </div>
-                <div class="posting_content">
-                    Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod.
-                </div>
-                <img class="posting-img" src="{% static "img/board/Logo_Illy.svg" %}">
-                <div class="posting_content">
-                    Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
-                </div>
-            </div>
-        </header>
-        <article>
-            <div class="recommend">
-                Other posts<br>
-                you may like
-            </div>
 
-            <div class="posting">
-                <img class="posting-img" src="{% static "img/board/Logo_Illy.svg" %}">
-                <div class="posting_title">
-                    Lorem ipsum dolor
-                </div>
-            </div>
+        <div class = "main">
+                <div class="main_posting">
 
-            <div class="posting">
-                <img class="posting-img" src="{% static "img/board/Logo_Illy.svg" %}">
-                <div class="posting_title">
-                    Lorem ipsum dolor
+                    <div class="posting_date"> 
+                        2023 09 06
+                    </div>
+                    <div class="posting_title">
+                        Lorem ipsum dolor
+                    </div>
+                    <div class="writer">
+                        by userid
+                    </div>
+                    <div class="content_tag">
+                        일상
+                    </div>
+                    <div class="posting_content">
+                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod.
+                    </div>
+                    <img class="posting-img" src="{% static "img/board/posting-img.svg" %}">
+                    <div class="posting_content">
+                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
+                    </div>
                 </div>
-            </div>
-        </article>
-        <aside>
-            <button class="left">수정하기</button>
-            <button class="left">삭제하기</button>
-            <button class="right">공유하기</button>
-            <br>
-            <span>다음글</span>
-            <span>제목</span>
-            <span>날짜</span>
-            <br>
-            <span>이전글</span>
-            <span>제목</span>
-            <span>날짜</span>
-        </aside>
+
+            <article class="recommend_post">
+                <div class="recommend">
+                    Other posts<br>
+                    you may like
+                </div>
+    
+                <div class="posting">
+                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
+                    <div class="recommend-posting-text">
+                        Lorem ipsum dolor
+                    </div>
+                </div>
+    
+                <div class="posting">
+                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
+                    <div class="recommend-posting-text">
+                        Lorem ipsum dolor
+                    </div>
+                </div>
+            </article>
+
+            <aside class="bottom_menu">
+
+                <div class="tool_bar">
+                    <div class="edit_btn">
+                        <button class="edit">수정하기</button>
+                    </div>
+                    <div>
+                        <button class="delete">삭제하기</button>
+                    </div>
+                    <div>
+                        <button class="share">공유하기</button>
+                    </div>
+                </div>
+                
+                
+                <div>
+                    <span>다음글</span>
+                    <span>제목</span>
+                    <span>날짜</span>
+                </div>
+                
+                <div>
+                    <span>이전글</span>
+                    <span>제목</span>
+                    <span>날짜</span>
+                </div>
+                
+            </aside>
+
+        </div>
+            
     </main>
     <!-- 푸터 -->
-    <div class="footer">
-        Made with Django
-    </div>
+    <footer>
+        <div class="container">
+          <p>Made with <span>Django</span></p>
+        </div>
+      </footer>
 </body>
 </html>
