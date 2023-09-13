@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}?{% now "U" %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board client</title>
   </head>
   <body style="margin: 0">
@@ -114,10 +113,6 @@
         </main>
     </div>
     <!-- 푸터 -->
-    <footer>
-        <div class="container">
-          <p>Made with <span>Django</span></p>
-        </div>
-      </footer>
+    <div class="footer">Made with Django</div>
   </body>
 </html>
