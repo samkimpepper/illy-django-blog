@@ -19,8 +19,8 @@
             <span class="menu">
                 <a href="">메뉴</a>
             </span>
-            <button class="logout_button">Logout</button>
-            <button class="just_wirte_button">Just Write!</button>
+            <a href="{% url 'blog:board_client' %}"><button class="logout-button">Logout</button></a>
+            <a href="{% url 'blog:write' %}"><button class="primary-button">Just Write!</button></a>
         </div>
 
         <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
