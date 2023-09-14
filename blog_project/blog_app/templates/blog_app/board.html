@@ -6,38 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi_lights.css' %}"/>
     <title>board</title>
 </head>
-<body>
-    <nav class="nav_bar">
 
-        <div class="header">
-            <div class = "logo_image">
-                <img src="{% static "img/board/main_logo.svg" %}">
-            </div>
-
-            <div class = "logo_text">MYLOG</div>
-
+<body style="margin:0">
+    <nav class="nav-bar">
+        <div class="nav-container">
+          <button class="nav_logo">
+              <img src="{% static "img/board/Logo_Illy_lights.png" %}">
+          </button>
+          <div style="display: flex; align-items: center; gap: 40px">
+            <span class="nav-topics">
+              <a href="">일상</a>
+              <a href="">요리</a>
+              <a href="">여행</a>
+              <a href="">영화</a>
+              <a href="">IT</a>
+            </span>
+            <div class="row-box">
+              {% if user.is_authenticated %}
+              <a href="{% url 'blog:logout' %}" class="logout-button">Logout</a>
+              <a
+                href="{% url 'blog:write' %}"
+                class="primary-button"
+                style="color:white"
+                >Just Write!</a
+              >
+              {% else %}
+              <a
+                href="{% url 'blog:login' %}"
+                class="primary-button"
+                style="color: white"
+                >Login</a
+              >
+              {% endif %}
+          </div>
         </div>
-
-
-
-        <div class="menu">
-            <div class = "menu_text"><a href="">일상</a></div>
-            <div class = "menu_text"><a href="">요리</a></div>
-            <div class = "menu_text"><a href="">여행</a></div>
-            <div class = "menu_text"><a href="">영화</a></div>
-            <div class = "menu_text"><a href="">IT</a></div>
-        </div>
-
-        <div class = "Logout_button"><button class = "Logout"><a href="">Logout</a></button></div>
-
-        <div class = "Write_button"><a href=""><button class = "Write_button_text">Just Write!</button></a></div>
-
     </nav>
+    
 
-    <main>
-
+    <main class = "main_layout">
         <div class = "main">
                 <div class="main_posting">
 
