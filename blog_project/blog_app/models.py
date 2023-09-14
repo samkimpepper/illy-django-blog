@@ -12,7 +12,6 @@ class Article(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     published_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now_add=True)
     # views : 수정필요, 
     views = models.IntegerField(default=0)
     topic = models.CharField(max_length=255, default='전체')
