@@ -4,10 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list_navi.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-    <title>post_list</title>
+    <title>board client</title>
   </head>
   <body style="margin: 0">
     <nav class="nav-bar">
@@ -21,26 +21,8 @@
             <a href="">요리</a>
             <a href="">여행</a>
             <a href="">영화</a>
-            <a href="">IT</a>
           </span>
-          <div class="row-box">
-            {% if user.is_authenticated %}
-            <a href="{% url 'blog:logout' %}" class="logout_button">Logout</a>
-            <a
-              href="{% url 'blog:write' %}"
-              class="primary-button"
-              style="color: #1e1e1e"
-              >Just Write!</a
-            >
-            {% else %}
-            <a
-              href="{% url 'blog:login' %}"
-              class="primary-button"
-              style="color: #1e1e1e"
-              >Login</a
-            >
-            {% endif %}
-          </div>
+          <a href="{% url 'blog:login' %}"><button class="primary-button" >Login</button></a>
         </div>
       </div>
     </nav>
@@ -66,7 +48,7 @@
           <div class="container">
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                    <img src = "{% static "img/board/rectangle 13.png" %}">
                 </div>
                 <div class="card-info-box">
                     <p>날짜</p> 
@@ -82,7 +64,7 @@
             </div>
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                    <img src = "{% static "img/board/rectangle 13.png" %}">
                 </div>
                 <div class="card-info-box">
                     <p>날짜</p> 
@@ -98,7 +80,7 @@
             </div>
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                    <img src = "{% static "img/board/rectangle 13.png" %}">
                 </div>
                 <div class="card-info-box">
                     <p>날짜</p> 
@@ -114,7 +96,7 @@
             </div>
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                    <img src = "{% static "img/board/rectangle 13.png" %}">
                 </div>
                 <div class="card-info-box">
                     <p>날짜</p> 
@@ -132,10 +114,6 @@
         </main>
     </div>
     <!-- 푸터 -->
-    <footer>
-      <div class = "container">
-        <p>Made with <span>Django</span></p>
-      </div>
-    </footer>
+    <div class="footer">Made with Django</div>
   </body>
 </html>

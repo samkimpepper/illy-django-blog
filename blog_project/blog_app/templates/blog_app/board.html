@@ -86,12 +86,16 @@
             <aside class="bottom_menu">
 
                 <div class="tool_bar">
+                    {% if user.is_authenticated %}
                     <div class="edit_btn">
-                        <button class="edit">수정하기</button>
+                        <a href="{% url 'blog:create_or_update_article' article.id %}">
+                            <button class="edit">수정하기</button>
+                        </a>
                     </div>
                     <div>
                         <button class="delete">삭제하기</button>
                     </div>
+                    {% endif %}
                     <div>
                         <button class="share">공유하기</button>
                     </div>
