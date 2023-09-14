@@ -4,10 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-    <title>board admin</title>
+    <title>post_list</title>
   </head>
   <body style="margin: 0">
     <nav class="nav-bar">
@@ -23,8 +23,24 @@
             <a href="">영화</a>
             <a href="">IT</a>
           </span>
-          <a href="{% url 'blog:logout' %}"><button class="logout_button" >Login</button></a>
-          <a href="{% url 'blog:login' %}"><button class="primary-button" >Login</button></a>
+          <div class="row-box">
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog:logout' %}" class="logout_button">Logout</a>
+            <a
+              href="{% url 'blog:write' %}"
+              class="primary-button"
+              style="color: #1e1e1e"
+              >Just Write!</a
+            >
+            {% else %}
+            <a
+              href="{% url 'blog:login' %}"
+              class="primary-button"
+              style="color: #1e1e1e"
+              >Login</a
+            >
+            {% endif %}
+          </div>
         </div>
       </div>
     </nav>
@@ -116,6 +132,10 @@
         </main>
     </div>
     <!-- 푸터 -->
-    <div class="footer">Made with Django</div>
+    <footer>
+      <div class = "container">
+        <p>Made with <span>Django</span></p>
+      </div>
+    </footer>
   </body>
 </html>
