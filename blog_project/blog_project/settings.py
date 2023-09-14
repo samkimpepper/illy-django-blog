@@ -134,9 +134,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 로그인 성공후 이동하는 URL
-LOGIN_REDIRECT_URL = '/board.html/'
+LOGIN_REDIRECT_URL = 'blog:post_list'
 
 # 로그아웃시 이동하는 URL
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'blog:post_list'
 
 AUTH_USER_MODEL = 'blog_app.User'
