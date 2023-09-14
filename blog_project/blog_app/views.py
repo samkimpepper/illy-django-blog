@@ -39,6 +39,9 @@ class RegisterAPIView(APIView):
 #board_client 페이지 렌더링
 def board_client(request):
     return render(request, 'blog_app/board_client.html')
+
+def board(request):
+    return render(request, 'blog_app/board.html')
     
 
 # def custom_login(request):
