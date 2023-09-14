@@ -31,8 +31,6 @@ class RegisterAPIView(APIView):
 #         return redirect('blog/postlist-admin.html')
 
 
-
-
 #post_list 페이지 렌더링 
 def post_list(request):
     return render(request, 'blog_app/post_list.html')

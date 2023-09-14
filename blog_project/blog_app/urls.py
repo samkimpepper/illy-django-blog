@@ -13,3 +13,4 @@ urlpatterns = [
     path('board',views.board,name='board'),
     path('write/', views.write, name='write'),
 ]
+
