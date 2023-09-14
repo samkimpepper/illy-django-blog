@@ -9,28 +9,14 @@
 </head>
 <body>
     {% block content %}
-
     <form method="post">
         {% csrf_token %}
         <h2>Login</h2>
-        <div class="box">
-            <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="username"
-            />
-
-            <input
-            type="text"
-            name="password"
-            id="password"
-            placeholder="password"
-            />
+        <div class ="box">
+            {{ form.as_p }}
             <button type="submit">Login</button>
         </div>
     </form>
-
     {% endblock %}
 
     <!-- 필드 오류와 넌필드 오류를 출력 -->

@@ -1,24 +1,20 @@
 from django import forms
-# from .models import BlogPost
 
-class CustomLoginForm(forms.Form):
+#로그인 form
+class LoginForm(forms.Form):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'login-input'}),
+        widget = forms.TextInput(attrs={'placeholder' : 'Username', 'class':'login-input'}),
         label='',
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'login-input'}),
+         widget = forms.PasswordInput(attrs={'placeholder' : 'Password', 'class':'login-input'}),
         label='',
     )
 
 
-# class BlogPostForm(forms.ModelForm):
-#     class Meta:
-#         model = BlogPost
-#         exclude = ['created_at']
 
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['topic'].required = False
-#         self.fields['publish'].required = False
-#         self.fields['views'].required = False
+# 채림님 작성중이던 form
+# class ArticleForm(forms.ModelForm):
+#     class Meta:
+#         model = Article
+#         fields = ['title', 'content']
