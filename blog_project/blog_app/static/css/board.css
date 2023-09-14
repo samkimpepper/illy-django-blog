@@ -1,0 +1,345 @@
+/* board css 적용 이준희 9.12 */
+
+* {
+    font-family: 'Pretendard', sans-serif;
+}
+
+.nav_bar {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    height: 105px;
+}
+
+.header {
+    height: 66.92308044433594px;
+    margin-right: 367px;
+    position: relative;
+
+}
+
+.nav_logo img {
+    vertical-align: middle;
+}
+
+.logo_text {
+    width: 50%;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: #F9F8F4;
+}
+
+.menu {
+    
+    display: flex;
+    margin-top: 42px;
+}
+
+a {
+    text-decoration: none;
+    color:#1E1E1E;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
+.menu_text {
+    margin-right: 40px;
+    color: #1E1E1E
+}
+
+.Logout_button {
+    margin-right: 30px;
+    margin-top: 42px;
+    height: 16px;
+    background-color: #F9F8F4;
+    border: 0;
+}
+
+.Logout{
+    border: 0;
+    background-color: transparent;
+}
+
+.Write_button {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.Write_button_text{
+    width: 100px;
+    height: 39px;
+    background-color: #1E1E1E;
+    color: #F9F8F4;
+    border-radius: 2px;
+}
+
+button{
+	border:none;
+}
+
+
+body {
+    width: 100%;
+    height: 50%;
+    top: -513px;
+    background: #F9F8F4;
+}
+
+.main_layout{
+    margin-top: 104px;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.main_posting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 642px;
+    margin-top: 20px;
+    margin-right: 25px;
+    width: 684px;
+    height: 714px;
+    border: 1.5px solid #CAC8C5;
+}
+
+.posting_date {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 17px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #A6A5A1;
+}
+
+.posting_title {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 38px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.writer {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 17px;
+    text-align: center;
+    opacity: 0.5px;
+    color: #A6A5A1;
+}
+
+.content_tag {
+    margin-bottom: 25px;
+    width: Hug (50px);
+    height: Hug (40px);
+    top: 273px;
+    left: 526px;
+    padding: 0px 9px 0px 9px;
+    border-radius: 2px;
+    gap: 10px; 
+    background-color: #E1E0DB;
+}
+
+.posting_content{
+    width: 620px;
+    height: 60px;
+}
+
+.posting-img {
+    width: 620px;
+    height: 319px;
+}
+
+.recommend_post {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 318px;
+    height: 714px;
+    border: 1.5px solid #CAC8C5;
+}
+
+.recommend {
+    width: 160px;
+    height: 58px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #A6A5A1;
+}
+
+.posting {
+    width: 302px;
+    height: 256px;
+    border: 1.5px solid #CAC8C5;
+    margin-left: 7px;
+    margin-bottom: 30px;
+}
+
+.recommend-posting-img {
+    margin: auto;
+    display: block;
+    width: 286px;
+    height: 200px;
+}
+
+.recommend-posting-text{
+    margin-top: 10px;
+    margin-left: 7px;
+    width: 200px;
+    height: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.bottom_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.tool_bar {
+    width: 64.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.edit_btn {
+    width: 70px;
+    height: 25px;
+    border-radius: 2px;
+    margin-right: 20px;
+}
+
+.edit {
+    width: 80px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center; 
+    background-color: #E1E0DB;
+}
+
+.delete_btn {
+    width: 70px;
+    height: 25px;
+    border-radius: 2px;
+    margin-right: 20px;
+}
+
+.delete {
+    width: 80px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center; 
+    background: #1E1E1E;
+    color: #CAC8C5;
+}
+
+.share_btn{
+    margin-left: auto;
+    width: 70px;
+    height: 25px;
+    border-radius: 2px;
+    border: 1px solid #D9D9D9; 
+    text-align: center;
+}
+
+.share {
+    width: 70px;
+    height: 25px;
+    border-radius: 2px;
+    border: 1px;
+    gap: 10px;
+    background: none;
+
+}
+
+.move_post {
+    width: 64.5%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    
+}
+
+.move_post_text{
+    margin-right: 30px;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    height: 18px;
+    opacity: 0.5px;
+    color: #A6A5A1;
+}
+
+.move_post_title{
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.move_post_date{
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    margin-left: auto;
+    color: #A6A5A1;
+}
+.move_post2{
+    width: 64.5%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 87px;
+}

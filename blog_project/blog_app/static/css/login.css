@@ -21,7 +21,7 @@ button[type="submit"] {
     width: 100%;
 }
 
-input{
+.login-input{
     width:-webkit-fill-available;
     border: none;
     border-bottom: 1px solid #222;
@@ -29,11 +29,11 @@ input{
     font-size: 14px;
 }
 
-input:focus{
+.login-input:focus{
     outline: black;
 }
 
-input::placeholder{
+.login-input::placeholder{
     color: #5C5C5C;
 }
 
