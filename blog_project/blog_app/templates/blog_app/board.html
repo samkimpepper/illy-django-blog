@@ -125,7 +125,9 @@
         {% if next_post %}
         <div class="move_post">
             <div class="move_post_text">다음글</div>
-            <div class="move_post_title">{{ next_post.title }}</div>
+            <a href="{% url 'blog:board' next_post.id %}">
+                <div class="move_post_title">{{ next_post.title }}</div>
+            </a>
             <div class="move_post_date">{{ next_post.published_at }}</div>
         </div>
         {% else %}
@@ -135,7 +137,9 @@
         {% if previous_post %}
         <div class="move_post2">
             <div class="move_post_text">이전글</div>
-            <div class="move_post_title">{{ previous_post.title }}</div>
+            <a href="{% url 'blog:board' previous_post.id %}">
+                <div class="move_post_title">{{ previous_post.title }}</div>
+            </a>
             <div class="move_post_date">{{ previous_post.published_at }}</div>
         </div>
         {% else %}
