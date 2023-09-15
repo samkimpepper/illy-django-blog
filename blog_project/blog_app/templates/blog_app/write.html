@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navi_light.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/write_navi.css' %}"/>
     <title>Document</title>
     <script src="https://cdn.tiny.cloud/1/cig4n9ujjp5wqsgk6jqk8pcfi03mazpxf0hb3h3tz9129744/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -32,7 +32,7 @@
     <div class="nav-bar">
         <div class="nav-container">
           <div>
-            <a href="{% url 'blog:board_admin' %}">
+            <a href="{% url 'blog:post_list' %}">
               <img class="logo" src="{% static 'img/board/Logo_Illy.svg' %}" alt="" />
             </a>
           </div>
@@ -141,11 +141,7 @@
                 </div>
                 
             </form>
-            <!--
-            <a href="{% url 'blog:post_list %}">
-              <div class="blue-box"><p>Made with <span>Django</span></p></div>
-            </a>
-          -->
+
         </div>
 
         {% endblock %}

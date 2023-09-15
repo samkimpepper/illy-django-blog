@@ -10,7 +10,8 @@ urlpatterns = [
     path('login/',views.login_Form,name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('',views.post_list,name='post_list'),
-    path('board',views.board,name='board'),
+    path('board/<int:post_id>/',views.post_detail,name='board'),
     path('write/', views.write, name='write'),
+    path('edit/<int:post_id>/', views.write, name='write'),
 ]
 
