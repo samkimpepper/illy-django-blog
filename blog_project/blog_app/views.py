@@ -33,7 +33,9 @@ class RegisterAPIView(APIView):
 
 #post_list 페이지 렌더링 
 def post_list(request):
-    return render(request, 'blog_app/post_list.html')
+    posts = Article.objects.filter(publish='Y').order_by('-views')
+
+    return render(request, 'blog_app/post_list.html', {'posts': posts})
 
 #board 페이지 렌더링
 def board(request):
@@ -105,7 +107,6 @@ def write(request, post_id=None):
     if article_id:
         article = get_object_or_404(Article, id=article_id)
     else:
-        
         article = Article.objects.filter(author_id=request.user.id, publish='N').order_by('-published_at').first()
 
     if request.method == 'POST':
@@ -123,7 +124,7 @@ def write(request, post_id=None):
             else:
                 article.publish = 'Y'
 
-            article.author = request.user 
+            article.author_id = request.user.id 
             article.save()
             return redirect('blog:board', post_id=article.id)
     else:
