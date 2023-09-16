@@ -6,6 +6,10 @@ from .forms import LoginForm,ArticleForm
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 from django.conf import settings
+from django.views import View 
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+
 from .models import Article
 
 
@@ -132,3 +136,12 @@ def write(request, post_id=None):
     context = {'form': form, 'article': article, 'edit_mode': article_id is not None}
 
     return render(request, 'blog_app/write.html', context)
+
+class image_upload(View):
+    def post(self, request):
+        file = request.FILES['file']
+        filepath = 'uploads/' + file.name 
+        filename = default_storage.save(filepath, file)
+        file_url = settings.MEDIA_URL + filename 
+
+        return JsonResponse({'location': file_url})
