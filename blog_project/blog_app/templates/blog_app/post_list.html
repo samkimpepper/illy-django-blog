@@ -21,8 +21,26 @@
             <a href="">요리</a>
             <a href="">여행</a>
             <a href="">영화</a>
+            <a href="">IT</a>
           </span>
-          <a href="{% url 'blog:login' %}"><button class="primary-button" >Login</button></a>
+          <div class="row-box">
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog:logout' %}" class="logout_button">Logout</a>
+            <a
+              href="{% url 'blog:write' %}"
+              class="primary-button"
+              style="color:black"
+              >Just Write!</a
+            >
+            {% else %}
+            <a
+              href="{% url 'blog:login' %}"
+              class="primary-button"
+              style="color: black"
+              >Login</a
+            >
+            {% endif %}
+          </div>
         </div>
       </div>
     </nav>
@@ -31,8 +49,8 @@
     <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
     {% for post in posts %} {% if forloop.first %}
         <div class="first-post-box">
-            <div class="container">
-                <a href="{% url 'blog:board' post.id %}">
+            
+                <a href="{% url 'blog:board' post.id %}" class= "container">
                     <div class="post-info-box">
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.content }}</p>
@@ -42,7 +60,7 @@
                         <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
                     </div>
                 </a>
-            </div>
+           
         </div>
         {% endif %} {% endfor %}
 
@@ -53,7 +71,7 @@
             {% for post in posts %} {% if not forloop.first %}
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/rectangle 13.png" %}">
+                    <img src = "{% static "img/board/posting-img.svg" %}">
                 </div>
                 <a href="{% url 'blog:board' post.id %}">
                     <div class="card-info-box">
