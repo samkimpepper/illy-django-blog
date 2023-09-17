@@ -140,3 +140,12 @@ LOGIN_REDIRECT_URL = 'blog:post_list'
 LOGOUT_REDIRECT_URL = 'blog:post_list'
 
 AUTH_USER_MODEL = 'blog_app.User'
+
+# DATABASES['local'] = {
+#     'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': BASE_DIR / 'db.sqlite3',
+# }
+
+# DATABASES['default'] = DATABASES['local']
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
