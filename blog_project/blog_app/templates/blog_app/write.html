@@ -11,7 +11,30 @@
     <script src="https://cdn.tiny.cloud/1/cig4n9ujjp5wqsgk6jqk8pcfi03mazpxf0hb3h3tz9129744/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
+      tinymce.init({
+        selector: '#content',
+        images_upload_url: '{% url "blog:image_upload" %}',
+      });
 
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('imageUpload').addEventListener('change', function() {
+          let formData = new FormData();
+          formData.append('file', this.files[0]);
+
+          fetch('{% url "blog:image_upload" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-CSRFToken': '{{ csrf_token }}'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            tinyMCE.activeEditor.insertContent(`<img src="${data.location}"/>`);
+          })
+          .catch(error => console.error(error));
+        });
+      });
     </script>
 </head>
 <body>
