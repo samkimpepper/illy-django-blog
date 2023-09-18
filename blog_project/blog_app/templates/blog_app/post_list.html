@@ -50,19 +50,19 @@
     {% for post in posts %} {% if forloop.first %}
         <div class="first-post-box">
             <div class = "container">
-                <a href="{% url 'blog:board' post.id %}" > 
-                  <div class="post-info-box">
-                    <h3>{{ post.title }}</h3>
-                    <p>{{ post.content |safe |truncatechars:200}}</p>
-                    <button>Read More</button>           
-                </a>
-              </div> 
+                <a href="{% url 'blog:board' post.id %}">
+                    <div class="post-info-box">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.content |safe |truncatechars:200}}</p>
+                        <button>Read More</button> 
+                      </div>
+                  </a>     
                 <div class="thumbnail-img">
-                  <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
-                </div>
-        </div>
-        {% endif %} {% endfor %}
-      </div>
+                        <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
+                  </div>
+              </div>
+          </div>
+      {% endif %} {% endfor %}
 
     <!-- 컨텐츠 -->
         <main class="post-box">
