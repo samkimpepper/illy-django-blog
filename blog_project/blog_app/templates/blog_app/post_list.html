@@ -26,7 +26,11 @@
                       </div>
                   </a>     
                 <div class="thumbnail-img">
-                        <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
+                  {% if post.img %}
+                  <img src="{{ post.img |safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
                   </div>
               </div>
           </div>
@@ -39,7 +43,11 @@
             {% for post in posts %} {% if not forloop.first %}
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                  {% if post.img %}
+                  <img src="{{ post.img |safe }}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
                 </div>
                 <a href="{% url 'blog:board' post.id %}">
                     <div class="card-info-box">

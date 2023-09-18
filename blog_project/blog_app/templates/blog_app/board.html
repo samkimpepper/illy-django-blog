@@ -31,7 +31,11 @@
                     <div class="posting_content">
                         {{ post.content | safe }}
                     </div>
-                    <img class="posting-img" src="{% static "img/board/posting-img.svg" %}">
+                    {% if post.img %}
+                  <img src="{{ post.img | safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
 
                 </div>
 
