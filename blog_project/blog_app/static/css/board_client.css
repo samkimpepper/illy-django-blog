@@ -124,7 +124,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 160px;
-    color: #1e1e1e;
+    color: #1e1e1e !important;
     font-family: 'Pretendard', sans-serif;
 }
 
@@ -137,11 +137,13 @@ h3 {
 .card-info-box h3{
     font-size: 20px;
     font-weight: 700;
+    color: #1e1e1e !important;
 }
 
 .card-info-box p {
     font-size: 14px;
     margin-bottom: 8px;
+    color: #1e1e1e;
 }
 
 .sub-info {
