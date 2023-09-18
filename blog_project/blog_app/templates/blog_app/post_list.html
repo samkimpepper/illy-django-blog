@@ -49,20 +49,20 @@
     <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
     {% for post in posts %} {% if forloop.first %}
         <div class="first-post-box">
-            
-                <a href="{% url 'blog:board' post.id %}" class= "container">
-                    <div class="post-info-box">
-                        <h3>{{ post.title }}</h3>
-                        <p>{{ post.content |safe}}</p>
-                        <button>Read More</button>
-                    </div>           
-                    <div class="thumbnail-img">
-                        <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
-                    </div>
+            <div class = "container">
+                <a href="{% url 'blog:board' post.id %}" > 
+                  <div class="post-info-box">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content |safe |truncatechars:200}}</p>
+                    <button>Read More</button>           
                 </a>
-           
+              </div> 
+                <div class="thumbnail-img">
+                  <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
+                </div>
         </div>
         {% endif %} {% endfor %}
+      </div>
 
     <!-- 컨텐츠 -->
         <main class="post-box">
@@ -77,7 +77,7 @@
                     <div class="card-info-box">
                         <div class="sub-info">{{ post.published_at }}</div> 
                         <h3>{{ post.title }}</h3>
-                        <div class = "sub-info">{{ post.content| safe}}</div>
+                        <div class = "sub-info">{{ post.content| safe |truncatechars:200}}</div>
                             <a href ="https://www.figma.com/file/N9GRjD5IhHFPsDcH3jjkuH/%EC%98%A4%EB%A5%B4%EB%AF%B8-2%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8(%EB%B8%94%EB%A1%9C%EA%B7%B8)-(Copy)?node-id=231%3A3&mode=dev">
                                 
                             </a>
