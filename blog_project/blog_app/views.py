@@ -134,3 +134,15 @@ def write(request, article_id=None):
     context = {'form': form, 'article': article, 'edit_mode': article_id is not None}
 
     return render(request, 'blog/write.html', context)
+
+
+# post_list 뷰와 비슷하게 필터링된 게시물 목록을 보여주는 뷰를 추가 by 이진혁
+def filtered_post_list(request, category):
+    
+    # category에 따라 게시물 필터링
+    if category == '전체':
+        posts = Article.objects.filter(publish='Y').order_by('-views')
+    else:
+        posts = Article.objects.filter(topic=category, publish='Y').order_by('-views')
+
+    return render(request, 'blog_app/post_list.html', {'posts': posts})
