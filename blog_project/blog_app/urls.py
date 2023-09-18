@@ -14,5 +14,5 @@ urlpatterns = [
     path('write/', views.write, name='write'),
     path('edit/<int:post_id>/', views.write, name='write'),
     path('image_upload', views.image_upload.as_view(), name='image_upload'),
+    path('post_list/<str:category>/', views.filtered_post_list, name='filtered_post_list'),
 ]
-

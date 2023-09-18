@@ -4,6 +4,7 @@ from .models import *
 from .serializers import *
 from .forms import LoginForm,ArticleForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.views import View 
@@ -78,7 +79,7 @@ def post_detail(request, post_id):
     if request.method == 'POST': 
         if 'delete-button' in request.POST:
             post.delete()
-            return redirect('blog_app:board')
+            return redirect('blog:post_list')
 
     post.views += 1 
     post.save() 
@@ -104,7 +105,12 @@ def post_detail(request, post_id):
 
 
 
+
 #게시글 작성, 수정 페이지, 임시저장 글 존재시 불러옴  by 이채림
+
+
+
+@login_required #로그인 할때만 접근할 수 있게 by 오준경
 def write(request, post_id=None):
     article_id = post_id
 
@@ -144,4 +150,17 @@ class image_upload(View):
         filename = default_storage.save(filepath, file)
         file_url = settings.MEDIA_URL + filename 
 
+
         return JsonResponse({'location': file_url})
+
+
+# post_list 뷰와 비슷하게 필터링된 게시물 목록을 보여주는 뷰를 추가 by 이진혁
+def filtered_post_list(request, category):
+    
+    # category에 따라 게시물 필터링
+    if category == '전체':
+        posts = Article.objects.filter(publish='Y').order_by('-views')
+    else:
+        posts = Article.objects.filter(topic=category, publish='Y').order_by('-views')
+
+    return render(request, 'blog_app/post_list.html', {'posts': posts})
