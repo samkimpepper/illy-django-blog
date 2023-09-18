@@ -4,6 +4,7 @@ from .models import *
 from .serializers import *
 from .forms import LoginForm,ArticleForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.views import View 
@@ -108,6 +109,7 @@ def post_detail(request, post_id):
 
 
 #게시글 작성, 수정 페이지, 임시저장 글 존재시 불러옴  by 이채림
+@login_required #로그인 할때만 접근할 수 있게 by 오준경
 def write(request, post_id=None):
     article_id = post_id
 
