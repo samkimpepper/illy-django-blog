@@ -6,6 +6,10 @@ from .forms import LoginForm,ArticleForm
 from django.contrib.auth import authenticate, login
 from bs4 import BeautifulSoup
 from django.conf import settings
+from django.views import View 
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+
 from .models import Article
 
 
@@ -35,7 +39,9 @@ class RegisterAPIView(APIView):
 
 #post_list 페이지 렌더링 
 def post_list(request):
-    return render(request, 'blog_app/post_list.html')
+    posts = Article.objects.filter(publish='Y').order_by('-views')
+
+    return render(request, 'blog_app/post_list.html', {'posts': posts})
 
 #board 페이지 렌더링
 def board(request):
@@ -74,7 +80,7 @@ def post_detail(request, post_id):
     if request.method == 'POST': 
         if 'delete-button' in request.POST:
             post.delete()
-            return redirect('blog_app:board')
+            return redirect('blog:post_list')
 
     post.views += 1 
     post.save() 
@@ -82,7 +88,7 @@ def post_detail(request, post_id):
     previous_post = Article.objects.filter(id__lt=post.id, publish='Y').order_by('-id').first()
     next_post = Article.objects.filter(id__gt=post.id, publish='Y').order_by('id').first()
 
-    recommended_posts = Article.objects.filter(topic=post.topic, publish='Y').exclude(id=post.id).order_by('-created_at')[:2]
+    recommended_posts = Article.objects.filter(topic=post.topic, publish='Y').exclude(id=post.id).order_by('-published_at')[:2]
     for recommended_post in recommended_posts:
         soup = BeautifulSoup(recommended_post.content, 'html.parser')
         image_tag = soup.find('img')
@@ -100,15 +106,15 @@ def post_detail(request, post_id):
 
 
 
+
 #게시글 작성, 수정 페이지, 임시저장 글 존재시 불러옴  by 이채림
-def write(request, article_id=None):
+def write(request, post_id=None):
+    article_id = post_id
 
     if article_id:
         article = get_object_or_404(Article, id=article_id)
     else:
-        article = None
-        # Article에 publish 필드 추가되면 아래 코드로 교체 
-        #article = Article.objects.filter(author=request.user, publish='N').order_by('-published_at').first()
+        article = Article.objects.filter(author_id=request.user.id, publish='N').order_by('-published_at').first()
 
     if request.method == 'POST':
         form = ArticleForm(request.POST, instance=article)
@@ -119,21 +125,29 @@ def write(request, article_id=None):
 
             if not form.cleaned_data.get('topic'):
                 article.topic = '전체'
+            
+            if 'temp-save-button' in request.POST:
+                article.publish = 'N'
+            else:
+                article.publish = 'Y'
 
-            # Article에 publish 필드 추가 되면 주석 제거
-            # if 'temp-save-button' in request.POST:
-            #     article.publish = 'N'
-            # else:
-            #     article.publish = 'Y'
-
-            article.author = request.user 
+            article.author_id = request.user.id 
             article.save()
-            return redirect('blog:post', article_id=article.id)
+            return redirect('blog:board', post_id=article.id)
     else:
         form = ArticleForm(instance=article)
     context = {'form': form, 'article': article, 'edit_mode': article_id is not None}
 
-    return render(request, 'blog/write.html', context)
+    return render(request, 'blog_app/write.html', context)
+
+class image_upload(View):
+    def post(self, request):
+        file = request.FILES['file']
+        filepath = 'uploads/' + file.name 
+        filename = default_storage.save(filepath, file)
+        file_url = settings.MEDIA_URL + filename 
+
+        return JsonResponse({'location': file_url})
 
 
 # post_list 뷰와 비슷하게 필터링된 게시물 목록을 보여주는 뷰를 추가 by 이진혁
