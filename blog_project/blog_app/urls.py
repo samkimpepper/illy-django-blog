@@ -1,5 +1,7 @@
 from django.urls import path, include 
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views 
 
 app_name = 'blog'
@@ -16,3 +18,6 @@ urlpatterns = [
     path('image_upload', views.image_upload.as_view(), name='image_upload'),
     path('post_list/<str:category>/', views.filtered_post_list, name='filtered_post_list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
