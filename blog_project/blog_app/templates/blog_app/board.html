@@ -4,50 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi_lights.css' %}"/>
     <title>board</title>
 </head>
 
 <body style="margin:0">
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <a href ="{% url 'blog:post_list' %}" class="nav_logo">
-              <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
-            </a>
-          <div style="display: flex; align-items: center; gap: 40px">
-            <span class="nav-topics">
-              <a href="">일상</a>
-              <a href="">요리</a>
-              <a href="">여행</a>
-              <a href="">영화</a>
-              <a href="">IT</a>
-            </span>
-            <div class="row-box">
-              {% if user.is_authenticated %}
-              <a href="{% url 'blog:logout' %}" class="logout-button">Logout</a>
-              <a
-                href="{% url 'blog:write' %}"
-                class="primary-button"
-                style="color:white"
-                >Just Write!</a
-              >
-              {% else %}
-              <a
-                href="{% url 'blog:login' %}"
-                class="primary-button"
-                style="color: white"
-                >Login</a
-              >
-              {% endif %}
-          </div>
-        </div>
-    </nav>
-    
-
-
+    {% include 'blog_app/nav_bar_light.html' %}
     <main class = "main_layout">
         <div class = "main">
                 <div class="main_posting">
@@ -140,12 +104,7 @@
         {% endif %}
         
     </aside>
-<!-- 푸터 -->
-    <footer>
-        <div class="footer_container">
-            <p>Made with <span>Django</span></p>
-        </div>
-    </footer>
+    {% include "blog_app/footer.html" %}
 </body>
 <script>
     {% comment %} 공유하기 버튼 기능 구현 9.17 이준희 {% endcomment %}

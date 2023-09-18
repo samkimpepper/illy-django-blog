@@ -4,46 +4,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_dark.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board client</title>
   </head>
   <body style="margin: 0">
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <a href="{% url 'blog:post_list' %}" class="nav_logo">
-          <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
-        </a>
-        <div style="display: flex; align-items: center; gap: 40px">
-          <span class="nav-topics">
-            <a href="">일상</a>
-            <a href="">요리</a>
-            <a href="">여행</a>
-            <a href="">영화</a>
-            <a href="">IT</a>
-          </span>
-          <div class="row-box">
-            {% if user.is_authenticated %}
-            <a href="{% url 'blog:logout' %}" class="logout_button">Logout</a>
-            <a
-              href="{% url 'blog:write' %}"
-              class="primary-button"
-              style="color:black"
-              >Just Write!</a
-            >
-            {% else %}
-            <a
-              href="{% url 'blog:login' %}"
-              class="primary-button"
-              style="color: black"
-              >Login</a
-            >
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </nav>
+
+    {% include 'blog_app/nav_bar_dark.html' %}
     <!-- Post list -->
     <div class ="post-list">
     <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
@@ -89,11 +57,6 @@
           </div>
         </main>
     </div>
-    <!-- 푸터 -->
-    <footer>
-      <div class="footer_container">
-        <p>Made with <span>Django</span></p>
-      </div>
-    </footer>
+    {% include "blog_app/footer.html" %}
   </body>
 </html>

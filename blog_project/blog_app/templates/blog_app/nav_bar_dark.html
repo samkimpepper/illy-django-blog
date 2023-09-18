@@ -1,0 +1,47 @@
+{% load static %}
+<div class="nav-bar">
+  <div class="nav-container">
+    <div>
+      <a href="{% url 'blog:post_list' %}">
+        <img class="logo" src="{% static 'img/board/Logo_Illy.svg' %}" style="width: 60px;" alt="" />
+      </a>
+    </div>
+    <div class="nav-buttons">
+      <div class="nav-topics" style= "font-weight:bold";>
+        <a href=""
+          ><button>일상</button></a
+        >
+        <a href=""
+          ><button>요리</button></a
+        >
+        <a href=""
+          ><button>여행</button></a
+        >
+        <a href=""
+          ><button>영화</button></a
+        >
+        <a href=""
+          ><button>IT</button></a
+        >
+      </div>
+      <div class="row-box">
+        {% if user.is_authenticated %}
+        <a href="{% url 'blog:logout' %}" class="logout-button">Logout</a>
+          <a
+            href="{% url 'blog:write' %}"
+            class="primary-button"
+            style="color: black"
+            >Just Write!</a
+          >
+          {% else %}
+          <a
+            href="{% url 'blog:login' %}"
+            class="primary-button"
+            style="color: black"
+            >Login</a
+          >
+          {% endif %}
+      </div>
+    </div>
+  </div>  
+</div>

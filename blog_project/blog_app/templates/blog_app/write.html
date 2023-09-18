@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/write_navi.css' %}"/>
     <title>Document</title>
     <script src="https://cdn.tiny.cloud/1/cig4n9ujjp5wqsgk6jqk8pcfi03mazpxf0hb3h3tz9129744/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -38,67 +38,7 @@
     </script>
 </head>
 <body>
-    <!--
-    <nav class="nav-bar">
-        <div class="header">
-            <div class="nav_logo">
-                <span>myLOG</span>
-                <img src="{% static "img/board/Logo_Illy.svg" %}">
-            </div>
-            <span class="menu">
-                <a href="">메뉴</a>
-            </span>
-            <button class="login_button">Logout</button>
-            <button class="just_wirte_button">Just Write!</button>
-        </div>
-    </nav>-->
-    <div class="nav-bar">
-        <div class="nav-container">
-          <div>
-            <a href="{% url 'blog:post_list' %}">
-              <img class="logo" src="{% static 'img/board/Logo_Illy.svg' %}" alt="" />
-            </a>
-          </div>
-          <div class="nav-buttons">
-            <div class="nav-topics">
-              <a href=""
-                ><button>일상</button></a
-              >
-              <a href=""
-                ><button>요리</button></a
-              >
-              <a href=""
-                ><button>여행</button></a
-              >
-              <a href=""
-                ><button>영화</button></a
-              >
-              <a href=""
-                ><button>IT</button></a
-              >
-            </div>
-            <div class="row-box">
-              {% if user.is_authenticated %}
-              <a href="{% url 'blog:logout' %}" class="logout-button">Logout</a>
-              <a
-                href="{% url 'blog:write' %}"
-                class="primary-button"
-                style="color: #e1e0db"
-                >Just Write!</a
-              >
-              {% else %}
-              <a
-                href="{% url 'blog:login' %}"
-                class="primary-button"
-                style="color: #e1e0db"
-                >Login</a
-              >
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-
+    {% include 'blog_app/nav_bar_light.html' %}
     
     {% block contents %}
     <div class="container">
@@ -171,11 +111,6 @@
 
     </div>
 
-    <!-- 푸터 -->
-    <footer>
-        <div class="footer_container">
-            <p>Made with <span>Django</span></p>
-        </div>
-    </footer>
+    {% include "blog_app/footer.html" %}
 </body>
 </html>
