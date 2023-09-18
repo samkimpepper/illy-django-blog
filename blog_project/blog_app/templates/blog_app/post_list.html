@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list_navi.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board client</title>
@@ -12,7 +12,7 @@
   <body style="margin: 0">
     <nav class="nav-bar">
       <div class="nav-container">
-        <a href="{% url 'blog:post list' %}" class="nav_logo">
+        <a href="{% url 'blog:post_list' %}" class="nav_logo">
           <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
         </a>
         <div style="display: flex; align-items: center; gap: 40px">
@@ -53,7 +53,7 @@
                 <a href="{% url 'blog:board' post.id %}" class= "container">
                     <div class="post-info-box">
                         <h3>{{ post.title }}</h3>
-                        <p>{{ post.content }}</p>
+                        <p>{{ post.content |safe}}</p>
                         <button>Read More</button>
                     </div>           
                     <div class="thumbnail-img">
@@ -77,7 +77,7 @@
                     <div class="card-info-box">
                         <p>{{ post.published_at }}</p> 
                         <h3>{{ post.title }}</h3>
-                        <p class = "sub-info">{{ post.content }}</p>
+                        <div class = "sub-info">{{ post.content| safe}}</div>
                             <a href ="https://www.figma.com/file/N9GRjD5IhHFPsDcH3jjkuH/%EC%98%A4%EB%A5%B4%EB%AF%B8-2%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8(%EB%B8%94%EB%A1%9C%EA%B7%B8)-(Copy)?node-id=231%3A3&mode=dev">
                                 
                             </a>
