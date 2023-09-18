@@ -12,4 +12,5 @@ urlpatterns = [
     path('',views.post_list,name='post_list'),
     path('board',views.board,name='board'),
     path('write/', views.write, name='write'),
+    path('post_list/<str:category>/', views.filtered_post_list, name='filtered_post_list'),
 ]
