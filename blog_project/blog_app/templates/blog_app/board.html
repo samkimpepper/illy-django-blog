@@ -77,19 +77,16 @@
                     you may like
                 </div>
     
+                {% for recommended_post in recommended_posts %}
                 <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
+                    
+                    <a href="{% url 'blog:board' recommended_post.id %}">
+                        {{ recommended_post.image_tag|safe }}
+                        {{ recommended_post.title }}</a>
+                    
                 </div>
-    
-                <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
-                </div>
+            {% endfor %}
+
             </article>
 
         </div>
@@ -106,9 +103,11 @@
                 </a>
             </div>
             <div class="delete_btn">
-                <a href="">
-                    <button class="delete">삭제하기</button>
-                </a>
+                <form method="POST" action="{% url 'blog:board' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete-button" value="true">
+                    <button type="submit" class="delete">삭제하기</button>
+                </form> 
             </div>
             {% endif %}
             <div class="share_btn">
@@ -148,4 +147,17 @@
         </div>
     </footer>
 </body>
+<script>
+    {% comment %} 공유하기 버튼 기능 구현 9.17 이준희 {% endcomment %}
+    document.querySelector('.share').addEventListener('click', function() {
+        let postUrl = window.location.href;
+        let tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = postUrl;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert('포스트 링크가 클립보드에 복사되었습니다');
+    });
+</script>
 </html>
