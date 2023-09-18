@@ -36,8 +36,6 @@ class RegisterAPIView(APIView):
 #         return redirect('blog/postlist-admin.html')
 
 
-
-
 #post_list 페이지 렌더링 
 def post_list(request):
     posts = Article.objects.filter(publish='Y').order_by('-views')
@@ -109,6 +107,9 @@ def post_detail(request, post_id):
 
 
 #게시글 작성, 수정 페이지, 임시저장 글 존재시 불러옴  by 이채림
+
+
+
 @login_required #로그인 할때만 접근할 수 있게 by 오준경
 def write(request, post_id=None):
     article_id = post_id
@@ -148,6 +149,7 @@ class image_upload(View):
         filepath = 'uploads/' + file.name 
         filename = default_storage.save(filepath, file)
         file_url = settings.MEDIA_URL + filename 
+
 
         return JsonResponse({'location': file_url})
 

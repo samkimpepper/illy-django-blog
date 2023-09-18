@@ -4,62 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board</title>
 </head>
-<body>
-    <nav class="nav_bar">
 
-        <div class="header">
-            <div class = "logo_image">
-                <img src="{% static "img/board/main_logo.svg" %}">
-            </div>
-
-            <div class = "logo_text">MYLOG</div>
-
-        </div>
-
-
-
-        <div class="menu">
-            <div class = "menu_text"><a href="">일상</a></div>
-            <div class = "menu_text"><a href="">요리</a></div>
-            <div class = "menu_text"><a href="">여행</a></div>
-            <div class = "menu_text"><a href="">영화</a></div>
-            <div class = "menu_text"><a href="">IT</a></div>
-        </div>
-
-        <div class = "Logout_button"><button>Logout</button></div>
-
-        <div class = "Write_button"><button class = "Write_button_text">Just Write!</button></div>
-
-    </nav>
-
-    <main>
-
+<body style="margin:0">
+    {% include 'blog_app/nav_bar_light.html' %}
+    <main class = "main_layout">
         <div class = "main">
                 <div class="main_posting">
 
                     <div class="posting_date"> 
-                        2023 09 06
+                        {{ post.published_at }}
                     </div>
                     <div class="posting_title">
-                        Lorem ipsum dolor
+                        {{ post.title }}
                     </div>
                     <div class="writer">
-                        by userid
+                        by {{ post.author_id }}
                     </div>
                     <div class="content_tag">
-                        일상
+                        {{ post.topic }}
                     </div>
                     <div class="posting_content">
-                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod.
+                        {{ post.content | safe }}
                     </div>
-                    <img class="posting-img" src="{% static "img/board/posting-img.svg" %}">
-                    <div class="posting_content">
-                        Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.    
-                    </div>
+                    {% if post.img %}
+                  <img src="{{ post.img | safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
+
                 </div>
 
             <article class="recommend_post">
@@ -68,58 +45,82 @@
                     you may like
                 </div>
     
+                {% for recommended_post in recommended_posts %}
                 <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
+                    
+                    <a href="{% url 'blog:board' recommended_post.id %}">
+                        {{ recommended_post.image_tag|safe }}
+                        {{ recommended_post.title }}</a>
+                    
                 </div>
-    
-                <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
-                </div>
+            {% endfor %}
+
             </article>
-
-            <aside class="bottom_menu">
-
-                <div class="tool_bar">
-                    <div class="edit_btn">
-                        <button class="edit">수정하기</button>
-                    </div>
-                    <div>
-                        <button class="delete">삭제하기</button>
-                    </div>
-                    <div>
-                        <button class="share">공유하기</button>
-                    </div>
-                </div>
-                
-                
-                <div>
-                    <span>다음글</span>
-                    <span>제목</span>
-                    <span>날짜</span>
-                </div>
-                
-                <div>
-                    <span>이전글</span>
-                    <span>제목</span>
-                    <span>날짜</span>
-                </div>
-                
-            </aside>
 
         </div>
             
     </main>
-    <!-- 푸터 -->
-    <footer>
-        <div class="container">
-          <p>Made with <span>Django</span></p>
+
+    <aside class="bottom_menu">
+
+        <div class="tool_bar">
+            {% if user.is_authenticated %}
+            <div class="edit_btn">
+                <a href="{% url 'blog:write' post.id %}">
+                    <button class="edit">수정하기</button>
+                </a>
+            </div>
+            <div class="delete_btn">
+                <form method="POST" action="{% url 'blog:board' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete-button" value="true">
+                    <button type="submit" class="delete">삭제하기</button>
+                </form> 
+            </div>
+            {% endif %}
+            <div class="share_btn">
+                <button class="share">공유하기</button>
+            </div>
         </div>
-      </footer>
+        
+        {% if next_post %}
+        <div class="move_post">
+            <div class="move_post_text">다음글</div>
+            <a href="{% url 'blog:board' next_post.id %}">
+                <div class="move_post_title">{{ next_post.title }}</div>
+            </a>
+            <div class="move_post_date">{{ next_post.published_at }}</div>
+        </div>
+        {% else %}
+        <div class="move_post"></div>
+        {% endif %}
+        
+        {% if previous_post %}
+        <div class="move_post2">
+            <div class="move_post_text">이전글</div>
+            <a href="{% url 'blog:board' previous_post.id %}">
+                <div class="move_post_title">{{ previous_post.title }}</div>
+            </a>
+            <div class="move_post_date">{{ previous_post.published_at }}</div>
+        </div>
+        {% else %}
+        <div class="move_post2"></div>
+        {% endif %}
+        
+    </aside>
+    {% include "blog_app/footer.html" %}
 </body>
+<script>
+    {% comment %} 공유하기 버튼 기능 구현 9.17 이준희 {% endcomment %}
+    document.querySelector('.share').addEventListener('click', function() {
+        let postUrl = window.location.href;
+        let tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = postUrl;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert('포스트 링크가 클립보드에 복사되었습니다');
+    });
+</script>
 </html>

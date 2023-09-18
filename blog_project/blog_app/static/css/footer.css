@@ -7,11 +7,11 @@ footer{
     font-family: 'Pretendard', sans-serif;
 }
 
-footer .container{
+footer .footer_container{
     align-items: self-end;
     display: flex;
     justify-content: flex-end;
-    flex-direction: column-reverse;
+    margin: 20px;
 }
 
 span{

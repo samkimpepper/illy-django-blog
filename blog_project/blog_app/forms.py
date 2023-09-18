@@ -1,4 +1,5 @@
 from django import forms
+from .models import Article
 
 #로그인 form
 class LoginForm(forms.Form):
@@ -11,10 +12,12 @@ class LoginForm(forms.Form):
         label='',
     )
 
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'content', 'topic']
+        exclude = ['published_at']
 
-
-# 채림님 작성중이던 form
-# class ArticleForm(forms.ModelForm):
-#     class Meta:
-#         model = Article
-#         fields = ['title', 'content']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['topic'].required = False 

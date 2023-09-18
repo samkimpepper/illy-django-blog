@@ -1,0 +1,70 @@
+{% load static %}?{% now "U" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_dark.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <title>board client</title>
+  </head>
+  <body style="margin: 0">
+
+    {% include 'blog_app/nav_bar_dark.html' %}
+    <!-- Post list -->
+    <div class ="post-list">
+    <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
+    {% for post in posts %} {% if forloop.first %}
+        <div class="first-post-box">
+            <div class = "container">
+                <a href="{% url 'blog:board' post.id %}">
+                    <div class="post-info-box">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.content |safe |truncatechars:200}}</p>
+                        <button>Read More</button> 
+                      </div>
+                  </a>     
+                <div class="thumbnail-img">
+                  {% if post.img %}
+                  <img src="{{ post.img |safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
+                  </div>
+              </div>
+          </div>
+      {% endif %} {% endfor %}
+
+    <!-- 컨텐츠 -->
+        <main class="post-box">
+          <!-- 피드 리스트 -->
+          <div class="container">
+            {% for post in posts %} {% if not forloop.first %}
+            <div class="card">
+                <div class = "card-thumbnail-img">
+                  {% if post.img %}
+                  <img src="{{ post.img |safe }}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
+                </div>
+                <a href="{% url 'blog:board' post.id %}">
+                    <div class="card-info-box">
+                        <div class="sub-info">{{ post.published_at }}</div> 
+                        <h3>{{ post.title }}</h3>
+                        <div class = "sub-info">{{ post.content| safe |truncatechars:200}}</div>
+                            <a href ="https://www.figma.com/file/N9GRjD5IhHFPsDcH3jjkuH/%EC%98%A4%EB%A5%B4%EB%AF%B8-2%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8(%EB%B8%94%EB%A1%9C%EA%B7%B8)-(Copy)?node-id=231%3A3&mode=dev">
+                                
+                            </a>
+                    </div>
+                </a>
+            </div>
+            {% endif %} {% endfor %}
+
+          </div>
+        </main>
+    </div>
+    {% include "blog_app/footer.html" %}
+  </body>
+</html>

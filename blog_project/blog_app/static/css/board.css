@@ -5,17 +5,16 @@
 }
 
 .nav_bar {
+
     display: flex;
-    align-items: 22px;
-    width: 1300px;
+    flex-direction: row;
+    justify-content: center; 
     height: 105px;
 }
 
 .header {
-    width: 174px;
     height: 66.92308044433594px;
-    margin-left: 208px;
-    margin-right: 385px;
+    margin-right: 367px;
     position: relative;
 
 }
@@ -25,10 +24,10 @@
 }
 
 .logo_text {
-    width: 100%;
+    width: 50%;
     position: absolute;
     top: 65%;
-    left: 53%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
     font-weight: bold;
@@ -39,6 +38,7 @@
 }
 
 .menu {
+    
     display: flex;
     margin-top: 42px;
 }
@@ -62,12 +62,17 @@ a {
 .Logout_button {
     margin-right: 30px;
     margin-top: 42px;
-    width: 50px;
     height: 16px;
     background-color: #F9F8F4;
+    border: 0;
 }
 
-.Write_button{
+.Logout{
+    border: 0;
+    background-color: transparent;
+}
+
+.Write_button {
     display: flex;
     justify-content: center;
     margin-top: 35px;
@@ -87,37 +92,40 @@ button{
 
 
 body {
-    width: 1440px;
-    height: 1259px;
+    width: 100%;
+    height: 50%;
     top: -513px;
     background: #F9F8F4;
+}
+
+.main_layout{
+    margin-top: 104px;
 }
 
 .main {
     display: flex;
     flex-direction: row;
+    justify-content: center; 
     flex-wrap: wrap;
-    width: 1300px;
+    width: 100%;
 }
 
 .main_posting {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 620px;
     height: 642px;
-    margin-top: 42px;
+    margin-top: 20px;
+    margin-right: 25px;
     width: 684px;
     height: 714px;
-    margin-left: 208px;
-    margin-right: 30px;
     border: 1.5px solid #CAC8C5;
 }
 
 .posting_date {
     margin-top: 35px;
     margin-bottom: 10px;
-    width: 90px;
+    width: 100%;
     height: 17px;
     font-size: 14px;
     font-weight: 500;
@@ -127,7 +135,7 @@ body {
 
 .posting_title {
     margin-bottom: 10px;
-    width: 500px;
+    width: 100%;
     height: 38px;
     font-size: 32px;
     font-weight: 700;
@@ -138,7 +146,7 @@ body {
 
 .writer {
     margin-bottom: 10px;
-    width: 100px;
+    width: 100%;
     height: 17px;
     text-align: center;
     opacity: 0.5px;
@@ -168,12 +176,11 @@ body {
 }
 
 .recommend_post {
-    display: flex;
-    flex-direction: column;
-    margin-top: 42px;
-    width: 318px;
-    height: 714px;
-    border: 1.5px solid #CAC8C5;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    width: calc(30% - 24px);
+    height: 100%
+    
 }
 
 .recommend {
@@ -192,43 +199,45 @@ body {
 }
 
 .posting {
-    width: 302px;
-    height: 256px;
-    border: 1.5px solid #CAC8C5;
-    margin-left: 7px;
-    margin-bottom: 30px;
+    margin-top: 32px;
+    padding:8px;
+    border: 1px solid #dbdbdb;
 }
 
-.recommend-posting-img {
-    margin: auto;
-    display: block;
-    width: 286px;
-    height: 200px;
-}
-
-.recommend-posting-text{
-    margin-top: 10px;
-    margin-left: 7px;
-    width: 200px;
-    height: 24px;
-    font-size: 20px;
+.posting a{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
+    font-size: 18px;
+}
+
+.posting:hover{
+    transform: scale(1.01); 
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5; 
+    transition: transform 0.8s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.posting img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 
 .bottom_menu {
     display: flex;
     flex-direction: column;
-    width: 1300px;
-    margin-left: 208px;
+    align-items: center;
+    width: 100%;
     margin-top: 20px;
 }
 
 .tool_bar {
+    width: 64.5%;
     display: flex;
     flex-direction: row;
+    justify-content: center; 
     margin-bottom: 20px;
 }
 
@@ -289,6 +298,7 @@ body {
 }
 
 .move_post {
+    width: 64.5%;
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
@@ -327,6 +337,7 @@ body {
     color: #A6A5A1;
 }
 .move_post2{
+    width: 64.5%;
     display: flex;
     flex-direction: row;
     margin-bottom: 87px;
