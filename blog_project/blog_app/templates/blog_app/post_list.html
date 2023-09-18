@@ -4,17 +4,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_client.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board client</title>
   </head>
   <body style="margin: 0">
     <nav class="nav-bar">
       <div class="nav-container">
-        <button class="nav_logo">
-            <img src="{% static "img/board/Logo_Illy.png" %}">
-        </button>
+        <a href="{% url 'blog:post list' %}" class="nav_logo">
+          <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
+        </a>
         <div style="display: flex; align-items: center; gap: 40px">
           <span class="nav-topics">
             <a href="">일상</a>
@@ -90,6 +90,10 @@
         </main>
     </div>
     <!-- 푸터 -->
-    <div class="footer">Made with Django</div>
+    <footer>
+      <div class="footer_container">
+        <p>Made with <span>Django</span></p>
+      </div>
+    </footer>
   </body>
 </html>
