@@ -31,9 +31,9 @@ body{
     color : white;
 }
 
-.first-post-box p{
+.first-post-box div{
     font-weight: 300;
-    margin-bottom: -30px;
+    margin-bottom: 10px;
 }
 
 .first-post-box .container{
@@ -65,7 +65,7 @@ body{
     border-radius: 2px;
     padding: 8px 18px;
     width: fit-content;
-    font-size: 14px
+    font-size: 14px;
 }
 
 .first-post-box button:hover{
