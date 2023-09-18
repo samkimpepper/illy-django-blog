@@ -148,7 +148,7 @@ class image_upload(View):
         file = request.FILES['file']
         filepath = 'uploads/' + file.name 
         filename = default_storage.save(filepath, file)
-        file_url = settings.MEDIA_URL + filename 
+        file_url = '/blog/media/' + filename 
 
 
         return JsonResponse({'location': file_url})
