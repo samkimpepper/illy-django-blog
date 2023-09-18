@@ -23,5 +23,5 @@ class Article(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        self.content = self.content.replace('"..', '"')
+        self.content = self.content.replace('..', '/blog')
         super().save(*args, **kwargs)
