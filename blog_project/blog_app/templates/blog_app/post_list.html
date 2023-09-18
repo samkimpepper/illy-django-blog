@@ -4,65 +4,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post_list_navi.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_dark.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
     <title>board client</title>
   </head>
   <body style="margin: 0">
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <a href="{% url 'blog:post_list' %}" class="nav_logo">
-          <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
-        </a>
-        <div style="display: flex; align-items: center; gap: 40px">
-          <span class="nav-topics">
-            <a href="">일상</a>
-            <a href="">요리</a>
-            <a href="">여행</a>
-            <a href="">영화</a>
-            <a href="">IT</a>
-          </span>
-          <div class="row-box">
-            {% if user.is_authenticated %}
-            <a href="{% url 'blog:logout' %}" class="logout_button">Logout</a>
-            <a
-              href="{% url 'blog:write' %}"
-              class="primary-button"
-              style="color:black"
-              >Just Write!</a
-            >
-            {% else %}
-            <a
-              href="{% url 'blog:login' %}"
-              class="primary-button"
-              style="color: black"
-              >Login</a
-            >
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </nav>
+
+    {% include 'blog_app/nav_bar_dark.html' %}
     <!-- Post list -->
     <div class ="post-list">
     <!-- 가장 조회수 높은 컨텐츠 or 최신  -->
     {% for post in posts %} {% if forloop.first %}
         <div class="first-post-box">
-            
-                <a href="{% url 'blog:board' post.id %}" class= "container">
+            <div class = "container">
+                <a href="{% url 'blog:board' post.id %}">
                     <div class="post-info-box">
                         <h3>{{ post.title }}</h3>
-                        <p>{{ post.content |safe}}</p>
-                        <button>Read More</button>
-                    </div>           
-                    <div class="thumbnail-img">
-                        <img src = "{% static "img/board/board_first_thumbnail.svg" %}"  >
-                    </div>
-                </a>
-           
-        </div>
-        {% endif %} {% endfor %}
+                        <p>{{ post.content |safe |truncatechars:200}}</p>
+                        <button>Read More</button> 
+                      </div>
+                  </a>     
+                <div class="thumbnail-img">
+                  {% if post.img %}
+                  <img src="{{ post.img |safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
+                  </div>
+              </div>
+          </div>
+      {% endif %} {% endfor %}
 
     <!-- 컨텐츠 -->
         <main class="post-box">
@@ -71,13 +43,17 @@
             {% for post in posts %} {% if not forloop.first %}
             <div class="card">
                 <div class = "card-thumbnail-img">
-                    <img src = "{% static "img/board/posting-img.svg" %}">
+                  {% if post.img %}
+                  <img src="{{ post.img |safe }}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
                 </div>
                 <a href="{% url 'blog:board' post.id %}">
                     <div class="card-info-box">
-                        <p>{{ post.published_at }}</p> 
+                        <div class="sub-info">{{ post.published_at }}</div> 
                         <h3>{{ post.title }}</h3>
-                        <div class = "sub-info">{{ post.content| safe}}</div>
+                        <div class = "sub-info">{{ post.content| safe |truncatechars:200}}</div>
                             <a href ="https://www.figma.com/file/N9GRjD5IhHFPsDcH3jjkuH/%EC%98%A4%EB%A5%B4%EB%AF%B8-2%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8(%EB%B8%94%EB%A1%9C%EA%B7%B8)-(Copy)?node-id=231%3A3&mode=dev">
                                 
                             </a>
@@ -89,11 +65,6 @@
           </div>
         </main>
     </div>
-    <!-- 푸터 -->
-    <footer>
-      <div class="footer_container">
-        <p>Made with <span>Django</span></p>
-      </div>
-    </footer>
+    {% include "blog_app/footer.html" %}
   </body>
 </html>

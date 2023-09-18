@@ -4,50 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board_navi_lights.css' %}"/>
     <title>board</title>
 </head>
 
 <body style="margin:0">
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <a href ="{% url 'blog:post_list' %}" class="nav_logo">
-              <img src="{% static "img/board/Logo_Illy.svg" %}" style="width: 60px;">
-            </a>
-          <div style="display: flex; align-items: center; gap: 40px">
-            <span class="nav-topics">
-              <a href="">일상</a>
-              <a href="">요리</a>
-              <a href="">여행</a>
-              <a href="">영화</a>
-              <a href="">IT</a>
-            </span>
-            <div class="row-box">
-              {% if user.is_authenticated %}
-              <a href="{% url 'blog:logout' %}" class="logout-button">Logout</a>
-              <a
-                href="{% url 'blog:write' %}"
-                class="primary-button"
-                style="color:white"
-                >Just Write!</a
-              >
-              {% else %}
-              <a
-                href="{% url 'blog:login' %}"
-                class="primary-button"
-                style="color: white"
-                >Login</a
-              >
-              {% endif %}
-          </div>
-        </div>
-    </nav>
-    
-
-
+    {% include 'blog_app/nav_bar_light.html' %}
     <main class = "main_layout">
         <div class = "main">
                 <div class="main_posting">
@@ -67,7 +31,11 @@
                     <div class="posting_content">
                         {{ post.content | safe }}
                     </div>
-                    <img class="posting-img" src="{% static "img/board/posting-img.svg" %}">
+                    {% if post.img %}
+                  <img src="{{ post.img | safe}}" />
+                  {% else %}
+                  <div style="width: 100%; height: 100%; background-color:transparent"></div>
+                  {% endif %}
 
                 </div>
 
@@ -77,19 +45,16 @@
                     you may like
                 </div>
     
+                {% for recommended_post in recommended_posts %}
                 <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
+                    
+                    <a href="{% url 'blog:board' recommended_post.id %}">
+                        {{ recommended_post.image_tag|safe }}
+                        {{ recommended_post.title }}</a>
+                    
                 </div>
-    
-                <div class="posting">
-                    <img class="recommend-posting-img" src="{% static "img/board/recommend-posting-img.svg" %}">
-                    <div class="recommend-posting-text">
-                        Lorem ipsum dolor
-                    </div>
-                </div>
+            {% endfor %}
+
             </article>
 
         </div>
@@ -106,9 +71,11 @@
                 </a>
             </div>
             <div class="delete_btn">
-                <a href="">
-                    <button class="delete">삭제하기</button>
-                </a>
+                <form method="POST" action="{% url 'blog:board' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete-button" value="true">
+                    <button type="submit" class="delete">삭제하기</button>
+                </form> 
             </div>
             {% endif %}
             <div class="share_btn">
@@ -141,11 +108,19 @@
         {% endif %}
         
     </aside>
-<!-- 푸터 -->
-    <footer>
-        <div class="footer_container">
-            <p>Made with <span>Django</span></p>
-        </div>
-    </footer>
+    {% include "blog_app/footer.html" %}
 </body>
+<script>
+    {% comment %} 공유하기 버튼 기능 구현 9.17 이준희 {% endcomment %}
+    document.querySelector('.share').addEventListener('click', function() {
+        let postUrl = window.location.href;
+        let tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = postUrl;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert('포스트 링크가 클립보드에 복사되었습니다');
+    });
+</script>
 </html>
