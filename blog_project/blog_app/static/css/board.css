@@ -106,7 +106,6 @@ body {
     margin: auto;
     margin-top: 140px;
     gap: 20px;
-    margin-bottom: 200px;
     font-family: 'Pretendard', sans-serif;
 }
 
@@ -196,29 +195,23 @@ body {
     border: 1px solid #dbdbdb;
     padding: 20px;
     width: calc(30% - 24px);
+    height: 100%
     
 }
 
-/* .recommend {
+.recommend {
     width: 160px;
     height: 58px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
     font-family: 'Pretendard', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 29px;
     letter-spacing: 0em;
     text-align: left;
     color: #A6A5A1;
-} */
-
-.recommend h3{
-    font-size: 24px;
-    color: #a6a5a1;
-    font-weight: 700;
-    line-height: 1.2;
 }
 
 .posting {
