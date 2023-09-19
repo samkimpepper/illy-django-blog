@@ -34,6 +34,38 @@
           })
           .catch(error => console.error(error));
         });
+        // AI 글 자동완성
+        document.getElementById('aiAutocompleteButton').addEventListener('click', function() {
+          // 로딩 애니메이션 
+          document.getElementById('loading-animation').style.display = 'block';
+          document.getElementById('ai-img').style.display = 'none';
+
+          let title = document.getElementById('title').value;
+          fetch('/blog/autocomplete/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: new URLSearchParams({
+              'title': title
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('loading-animation').style.display = 'none';
+            document.getElementById('ai-img').style.display = 'block';
+        
+            //기존 내용에 자동완성 된 내용 더함
+            let currentContent = tinyMCE.activeEditor.getContent();
+          data.message = data.message.replace(/\n/g, '<br>');
+          tinyMCE.activeEditor.setContent(currentContent + data.message);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('loading-animation').style.display = 'none';
+          });
+        });
       });
     </script>
 </head>
@@ -50,7 +82,7 @@
                     <textarea id="content" name="content">{{ article.content }}</textarea>
                 </div>
                 <div class="post-info-box">
-                    <button type="button" class="ai-button">
+                    <button type="button" id="aiAutocompleteButton" class="ai-button">
                         <img id="ai-img" src="{% static 'img/board/ai.svg' %}" alt="AI 아이콘">
                         <div id="loading-animation" style="display:none;">
                             <img>

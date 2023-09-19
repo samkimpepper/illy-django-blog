@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from django.core.files.storage import default_storage
 
 from .models import Article
-
+import openai
 
 class RegisterAPIView(APIView):
     def get(self, request):
@@ -176,3 +176,27 @@ def post_list(request, topic=None):
     else:
         posts = Article.objects.filter(publish='Y').order_by('-views') 
     return render(request, 'blog_app/post_list.html', {'posts': posts})
+
+
+#자동완성기능
+openai.api_key = settings.API_KEY 
+
+def autocomplete(request):
+    if request.method == "POST":
+
+        #제목 필드값 가져옴
+        prompt = request.POST.get('title')
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+            # 반환된 응답에서 텍스트 추출해 변수에 저장
+            message = response['choices'][0]['message']['content']
+        except Exception as e:
+            message = str(e)
+        return JsonResponse({"message": message})
+    return render(request, 'autocomplete.html')

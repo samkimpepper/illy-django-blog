@@ -149,3 +149,5 @@ AUTH_USER_MODEL = 'blog_app.User'
 # DATABASES['default'] = DATABASES['local']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+API_KEY = secrets['API_KEY']

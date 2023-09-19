@@ -18,6 +18,7 @@ urlpatterns = [
     path('image_upload', views.image_upload.as_view(), name='image_upload'),
     path('post_list/<str:category>/', views.filtered_post_list, name='filtered_post_list'),
     path('post_list/<str:topic>/', views.post_list, name='post_list_by_topic'),
+    path('autocomplete/', views.autocomplete, name='autocomplete'),
 ]
 
 if settings.DEBUG:
