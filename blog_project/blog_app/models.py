@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+import os
 
 class User(AbstractUser):
     username = models.CharField(max_length=20, unique=True)
@@ -25,3 +25,15 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.content = self.content.replace('..', '/blog')
         super().save(*args, **kwargs)
+        
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    image = models.ImageField(upload_to='post_images/')  # 게시물 이미지 필드
+
+    def delete(self, *args, **kwargs):
+        # 게시물 삭제 시 연결된 이미지 파일도 삭제
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
+        super().delete(*args, **kwargs)
