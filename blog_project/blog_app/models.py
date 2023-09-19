@@ -24,6 +24,7 @@ class Article(models.Model):
     
     def save(self, *args, **kwargs):
         self.content = self.content.replace('"../media', '"/blog/media')
+        self.content = self.content.replace('../../', '/blog/')
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
