@@ -200,7 +200,7 @@ body {
 }
 
 .recommend {
-    width: 160px;
+    width: 170px;
     height: 58px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -215,7 +215,7 @@ body {
 }
 
 .posting {
-    margin-top: 32px;
+    margin-top: 30px;
     padding:8px;
     border: 1px solid #dbdbdb;
 }
