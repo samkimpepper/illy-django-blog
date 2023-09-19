@@ -164,3 +164,15 @@ def filtered_post_list(request, category):
         posts = Article.objects.filter(topic=category, publish='Y').order_by('-views')
 
     return render(request, 'blog_app/post_list.html', {'posts': posts})
+
+
+# 포스트리스트
+def post_list(request, topic=None):
+    
+    # 특정 주제로 필터링
+    if topic:
+        posts = Article.objects.filter(topic=topic, publish='Y').order_by('-views')
+    
+    else:
+        posts = Article.objects.filter(publish='Y').order_by('-views') 
+    return render(request, 'blog_app/post_list.html', {'posts': posts})

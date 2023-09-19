@@ -7,20 +7,19 @@
       </a>
     </div>
     <div class="nav-buttons">
-      <div class="nav-topics" style= "font-weight:bold";>
-        <a href=""
+      <a href="{% url 'blog:post_list_by_topic' topic='일상' %}"
           ><button>일상</button></a
         >
-        <a href=""
+        <a href="{% url 'blog:post_list_by_topic' topic='요리' %}"
           ><button>요리</button></a
         >
-        <a href=""
+        <a href="{% url 'blog:post_list_by_topic' topic='여행' %}"
           ><button>여행</button></a
         >
-        <a href=""
+        <a href="{% url 'blog:post_list_by_topic' topic='영화' %}"
           ><button>영화</button></a
         >
-        <a href=""
+        <a href="{% url 'blog:post_list_by_topic' topic='IT' %}"
           ><button>IT</button></a
         >
       </div>
