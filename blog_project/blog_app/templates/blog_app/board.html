@@ -40,6 +40,7 @@
                 <div class="recommend">
                     <h3>Other posts<br>
                     you may like</h3>
+                </div>
                     {% for recommended_post in recommended_posts %}
                     <div class="posting">
                         <a href="{% url 'blog:board' recommended_post.id %}">
@@ -47,7 +48,7 @@
                             {{ recommended_post.title }}</a>
                     </div>
                     {% endfor %}
-                </div>
+                
             </article>
         </div>
             
