@@ -31,13 +31,13 @@
                     <div class="posting_content">
                         {{ post.content | safe }}
                     </div>
-                    <div class ="posting-img">
+                    {% comment %} <div class ="posting-img">
                     {% if post.content|get_img_src %}
                   <img src="{{ post.content|get_img_src}}" />
                   {% else %}
                   <div style="width: 100%; height: 100%; background-color:transparent"></div>
                   {% endif %}
-                    </div>
+                    </div> {% endcomment %}
 
                 </div>
 
