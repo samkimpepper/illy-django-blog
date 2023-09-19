@@ -38,19 +38,16 @@
             {% comment %} 추천게시글 {% endcomment %}
             <article class="recommend_post">
                 <div class="recommend">
-                    Other posts<br>
-                    you may like
+                    <h3>Other posts<br>
+                    you may like</h3>
+                    {% for recommended_post in recommended_posts %}
+                    <div class="posting">
+                        <a href="{% url 'blog:board' recommended_post.id %}">
+                            {{ recommended_post.image_tag|safe }}
+                            {{ recommended_post.title }}</a>
+                    </div>
+                    {% endfor %}
                 </div>
-    
-                {% for recommended_post in recommended_posts %}
-                <div class="posting">
-                    
-                    <a href="{% url 'blog:board' recommended_post.id %}">
-                        {{ recommended_post.content|get_img_src }}
-                        {{ recommended_post.title }}</a>
-                    
-                </div>
-            {% endfor %}
             </article>
         </div>
             
