@@ -23,7 +23,7 @@ class Article(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        self.content = self.content.replace('..', '/blog')
+        self.content = self.content.replace('"../media', '"/blog/media')
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
