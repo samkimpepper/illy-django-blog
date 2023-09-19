@@ -1,4 +1,4 @@
-{% load static %}
+{% load custom_filter %} {% load static %}?{% now "U" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
                     </div>
                     <div class ="posting-img">
                     {% if post.content|get_img_src %}
-                  <img src="{{ post.content|get_img_src | safe}}" />
+                  <img src="{{ post.content|get_img_src}}" />
                   {% else %}
                   <div style="width: 100%; height: 100%; background-color:transparent"></div>
                   {% endif %}
