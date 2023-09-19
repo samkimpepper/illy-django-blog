@@ -25,15 +25,13 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         self.content = self.content.replace('..', '/blog')
         super().save(*args, **kwargs)
-        
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    image = models.ImageField(upload_to='post_images/')  # 게시물 이미지 필드
 
     def delete(self, *args, **kwargs):
-        # 게시물 삭제 시 연결된 이미지 파일도 삭제
-        if self.image:
-            if os.path.isfile(self.image.path):
-                os.remove(self.image.path)
+        # 게시물 삭제 시 연결된 이미지 파일도 삭제합니다.
+        if self.img:
+            # 이미지 파일의 경로를 가져옵니다.
+            img_path = self.img.path
+            # 파일이 존재하는지 확인하고 파일을 삭제합니다.
+            if os.path.isfile(img_path):
+                os.remove(img_path)
         super().delete(*args, **kwargs)
